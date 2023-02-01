@@ -9,13 +9,16 @@ public class Sword_Manager : MonoBehaviour
     public GameObject Trigger;
     
     void Start() {
-        Debug.Log(Trigger.transform.IsChildOf(TriggerParent.transform));
+       // Debug.Log(Trigger.transform.IsChildOf(TriggerParent.transform));
+        Debug.Log("PETER");
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionStay(Collision other)
     {
         GameObject trigger = other.gameObject;
-        if(Trigger.transform.IsChildOf(TriggerParent.transform)) {
+        Debug.Log("TOUCHER");
+       // test  
+        if(trigger.transform.IsChildOf(TriggerParent.transform)) {
             AudioSource.PlayClipAtPoint(TriggerParent.GetComponent<AudioSource>().clip, trigger.transform.position);
             Destroy(trigger);
         }
