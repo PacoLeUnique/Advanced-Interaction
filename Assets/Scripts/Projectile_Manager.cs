@@ -9,6 +9,8 @@ public class Projectile_Manager : MonoBehaviour
     public float speed = 1.0f;
 
     private Vector3 targetPosition;
+    private Vector3 direction;
+    private bool hasBeenBonked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,25 @@ public class Projectile_Manager : MonoBehaviour
        // Debug.Log("my target is at " + targetPosition);
 
         var step = speed * Time.fixedDeltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+        if (!hasBeenBonked)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+            direction = Vector3.Normalize(targetPosition - transform.position);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x + (direction.x*step), 
+                                             transform.position.y + (direction.y*step), 
+                                             transform.position.z + (direction.z*step));
+
+        }
+    }
+
+
+    public void Rebondis(Transform shieldTransform, Vector3 normal)
+    {
+        hasBeenBonked = true;
+        speed *= 2;
+        direction = Vector3.Normalize(Vector3.Reflect(this.transform.position, normal));
     }
 }

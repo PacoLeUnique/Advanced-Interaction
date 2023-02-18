@@ -6,7 +6,6 @@ public class Sword_Manager : MonoBehaviour
 {
 
     public GameObject TriggerParent;
-    public GameObject Trigger;
     
     void Start() {
        // Debug.Log(Trigger.transform.IsChildOf(TriggerParent.transform));
