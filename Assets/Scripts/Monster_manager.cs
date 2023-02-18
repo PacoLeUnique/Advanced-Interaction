@@ -41,7 +41,7 @@ public class Monster_manager : MonoBehaviour
         }
         else 
         {
-            Transform projectileParent = GameObject.Find("Green balls").transform;
+            Transform projectileParent = GameObject.Find("Projectiles").transform;
             var newBall = GameObject.Instantiate(GreenProjectilePrefab, projectileParent);
 
             newBall.GetComponent<Projectile_Manager>().target = target;

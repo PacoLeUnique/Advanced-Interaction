@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sword_Manager : MonoBehaviour
 {
 
-    public GameObject TriggerParent;
+    public GameObject TriggerParent; // doit etre le GameObject "Ghouls"
     
     void Start() {
        // Debug.Log(Trigger.transform.IsChildOf(TriggerParent.transform));
@@ -17,7 +17,7 @@ public class Sword_Manager : MonoBehaviour
         Debug.Log("OBJECT TOUCHER");
         if(trigger.transform.IsChildOf(TriggerParent.transform)) {
             AudioSource.PlayClipAtPoint(TriggerParent.GetComponent<AudioSource>().clip, trigger.transform.position);
-            Destroy(trigger);
+            trigger.GetComponent<Ghoul_Manager>().Die();
         }
     }
 }
